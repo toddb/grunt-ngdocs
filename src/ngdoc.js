@@ -218,7 +218,7 @@ Doc.prototype = {
         });
     });
     text = parts.join('');
-    text = new Showdown.converter({ extensions : ['table'] }).makeHtml(text);
+    text = new Showdown.converter({ extensions : ['table'].concat(this.options.extensions) }).makeHtml(text);
     text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function(_, id) {
       return placeholderMap[id];
     });

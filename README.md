@@ -32,6 +32,7 @@ ngdocs: {
     scripts: ['../app.min.js'],
     html5Mode: true,
     title: "My Awesome Docs",
+    extensions: ['tabs'],
     analytics: {
           account: 'UA-08150815-0',
           domainName: 'my-domain.com'
@@ -118,6 +119,10 @@ Each grunt target creates a section in the documentation app.
 ####title
 [default] 'API Documentation'  
 Set the name for the section in the documentation app.
+
+####extensions
+[default] 'table'
+Add showdown extensions to the converter that already exists in the showdown extensions folder
 
 
 ##How it works
