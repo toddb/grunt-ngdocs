@@ -33,12 +33,13 @@ ngdocs: {
     dest: 'docs'
     scripts: ['../app.min.js'],
     html5Mode: true,
-    startPage: '/api',
+    startPage: '/overview',
     title: "My Awesome Docs",
     image: "path/to/my/image.png",
     imageLink: "http://my-domain.com",
     titleLink: "/api",
     bestMatch: true,
+    extensions: ['tabs'],
     analytics: {
           account: 'UA-08150815-0',
           domainName: 'my-domain.com'
@@ -148,10 +149,13 @@ Each grunt target creates a section in the documentation app.
 [default] 'API Documentation'  
 Set the name for the section in the documentation app.
 
+####extensions
+[default] 'table'
+Add showdown extensions to the converter that already exists in the showdown extensions folder
+
 ####api
 [default] true for target api  
 Set the sidebar to advanced mode, with sections for modules, services, etc.
-
 
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.

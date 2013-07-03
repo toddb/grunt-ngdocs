@@ -23,6 +23,7 @@ module.exports = function(grunt) {
           startPage: '/api',
           scripts: ['angular.js'],
           styles: [],
+          extensions: [],
           title: grunt.config('pkg') ?
             (grunt.config('pkg').title || grunt.config('pkg').name) :
             '',
