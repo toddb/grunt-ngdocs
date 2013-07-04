@@ -17,7 +17,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "showdown": "git+ssh://git@github.com:toddb/showdown.git"
+    "showdown": "https://github.com/toddb/showdown.git"
   },
   "peerDependencies": {
     "grunt": "0.4.x"
