@@ -33,6 +33,7 @@ ngdocs: {
     html5Mode: true,
     title: "My Awesome Docs",
     extensions: ['tabs'],
+    tags: 'mine',
     analytics: {
           account: 'UA-08150815-0',
           domainName: 'my-domain.com'
@@ -124,6 +125,9 @@ Set the name for the section in the documentation app.
 [default] 'table'
 Add showdown extensions to the converter that already exists in the showdown extensions folder
 
+####tags
+[default] ''
+Add tags to pages to include or exclude - similar to usage in docbook. Tags can be comma-delimited for multiple.
 
 ##How it works
 The task parses the specified files for doc commets and extract these in partial html files for the documentation app.
