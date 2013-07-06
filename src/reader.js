@@ -9,8 +9,7 @@ var ngdoc = require('./ngdoc.js'),
   NEW_LINE = /\n\r?/;
 
 function process(content, file, section, options) {
-  // exclude pages which have the @tag xxxx when yyyy is specified in the options
-  if (exclude(content, options)) return;
+  if (exclude(content, file, options)) return;
   if (/\.js$/.test(file)) {
     processJsFile(content, file, section, options).forEach(function(doc) {
       exports.docs.push(doc);
@@ -21,15 +20,22 @@ function process(content, file, section, options) {
   }
 }
 
-function exclude(content, options) {
-  var lines = content.toString().split(NEW_LINE);
-  lines.forEach(function (line, lineNumber) {
-    if (line.match(/^@tag\s+(.*)\n/)) {
+// exclude pages which have the @tag xxxx when yyyy is specified in the options
+function exclude(content, file, options) {
+  var match
+    , lines = content.toString().split(NEW_LINE)
+    , exclude = false;
+
+  lines.forEach(function (line) {
+    if (match = line.match(/^@tag\s+(.*)/)) {
       var tag = match[1]; // single tag match at this point
-      if (options.tags && !options.tags.contains(tag)) return true;
+      if (options.tags && options.tags.indexOf(tag) == -1) {
+        console.log("Excluding: ", file, "- @tag", match[1]);
+        exclude = true;
+      }
     }
   });
-  return false;
+  return exclude;
 }
 
 function processJsFile(content, file, section, options) {
