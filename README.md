@@ -40,6 +40,7 @@ ngdocs: {
     titleLink: "/api",
     bestMatch: true,
     extensions: ['tabs'],
+    tags: 'mine',
     analytics: {
           account: 'UA-08150815-0',
           domainName: 'my-domain.com'
@@ -156,6 +157,10 @@ Add showdown extensions to the converter that already exists in the showdown ext
 ####api
 [default] true for target api  
 Set the sidebar to advanced mode, with sections for modules, services, etc.
+
+####tags
+[default] ''
+Add tags to pages to include or exclude - similar to usage in docbook. Tags can be comma-delimited for multiple.
 
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.
