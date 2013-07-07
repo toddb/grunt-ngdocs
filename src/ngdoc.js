@@ -288,8 +288,8 @@ Doc.prototype = {
         });
     });
     text = parts.join('');
-    var opts = { condition: options.tags}
-    text = new Showdown.converter({ extensions: ['table'].concat(this.options.extensions) }, {options: opts})
+    var opts = { condition: this.options.condition}
+    text = new Showdown.converter({ extensions: ['table'].concat(this.options.extensions) , options: opts})
       .makeHtml(text);
     text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function (_, id) {
       return placeholderMap[id];

@@ -24,6 +24,7 @@ module.exports = function(grunt) {
           scripts: ['angular.js'],
           styles: [],
           extensions: [],
+          condition: '',
           title: grunt.config('pkg') ?
             (grunt.config('pkg').title || grunt.config('pkg').name) :
             '',

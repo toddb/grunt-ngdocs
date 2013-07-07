@@ -152,15 +152,11 @@ Set the name for the section in the documentation app.
 
 ####extensions
 [default] 'table'
-Add showdown extensions to the converter that already exists in the showdown extensions folder
-
-####api
-[default] true for target api  
-Set the sidebar to advanced mode, with sections for modules, services, etc.
+Add showdown extensions to the converter that already exists in the showdown extensions folder.
 
 ####tags
 [default] ''
-Add tags to pages to include or exclude - similar to usage in docbook. Tags can be comma-delimited for multiple.
+Include/exclude condition based on tags on pages - similar to usage in docbook. Tags can be comma-delimited for multiple.
 
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.
