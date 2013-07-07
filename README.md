@@ -123,11 +123,11 @@ Set the name for the section in the documentation app.
 
 ####extensions
 [default] 'table'
-Add showdown extensions to the converter that already exists in the showdown extensions folder
+Add showdown extensions to the converter that already exists in the showdown extensions folder.
 
-####tags
+####condition
 [default] ''
-Add tags to pages to include or exclude - similar to usage in docbook. Tags can be comma-delimited for multiple.
+Include/exclude condition based on tags on pages - similar to usage in docbook. Tags can be comma-delimited for multiple.
 
 ##How it works
 The task parses the specified files for doc commets and extract these in partial html files for the documentation app.
