@@ -1,6 +1,8 @@
 /**
  * All parsing/transformation code goes here. All code here should be sync to ease testing.
  */
+
+var Showdown = require('showdown');
 var DOM = require('./dom.js').DOM;
 var htmlEscape = require('./dom.js').htmlEscape;
 var Example = require('./example.js').Example;
@@ -286,29 +288,10 @@ Doc.prototype = {
         });
     });
     text = parts.join('');
-
-    function prepareClassName(text) {
-      return text.toLowerCase().replace(/[_\W]+/g, '-');
-    };
-
-    var pageClassName, suffix = '-page';
-    if(this.name) {
-      var split = this.name.match(/^\s*(.+?)\s*:\s*(.+)/);
-      if(split && split.length > 1) {
-        var before = prepareClassName(split[1]);
-        var after = prepareClassName(split[2]);
-        pageClassName = before + suffix + ' ' + before + '-' + after + suffix;
-      }
-    }
-    pageClassName = pageClassName || prepareClassName(this.name || 'docs') + suffix;
-
-    text = '<div class="' + pageClassName + '">' +
-             marked(text) +
-           '</div>';
-    
-	// TODO: resolove issue between Showndown and 
-    text = new Showdown.converter({ extensions : ['table'].concat(this.options.extensions) }).makeHtml(text);
-    text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function(_, id) {
+    var opts = { condition: options.tags}
+    text = new Showdown.converter({ extensions: ['table'].concat(this.options.extensions) }, {options: opts})
+      .makeHtml(text);
+    text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function (_, id) {
       return placeholderMap[id];
     });
 
