@@ -148,6 +148,7 @@
                  tabindex="1" accesskey="s" class="search-query">
           <% } %>
           <div class="spacer"></div>
+          <div ng-show="search">Filtered results:</div>
 
           <ul class="nav nav-list well" ng-show="pages">
             <li ng-repeat="page in pages<%= trackBy('page.url', "'expand'") %>" ng-class="navClass(page)" class="api-list-item">
