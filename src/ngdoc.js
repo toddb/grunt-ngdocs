@@ -41,6 +41,7 @@ function Doc(text, file, line, options) {
   this.methods = this.methods || [];
   this.events = this.events || [];
   this.links = this.links || [];
+  this.subsection = this.subsection || [];
 }
 Doc.METADATA_IGNORE = (function () {
   var words = require('fs').readFileSync(__dirname + '/ignore.words', 'utf8');
@@ -256,6 +257,19 @@ Doc.prototype = {
     this.description = this.markdown(this.description);
     this.example = this.markdown(this.example);
     this['this'] = this.markdown(this['this']);
+
+    /*
+    *  Extract the subsections from the file path
+    *
+    *   - subsections start from the section
+    *   - doesn't include the file and assumes file ends in .ngdoc
+    */
+    var start = this.file.indexOf(this.section) + this.section.length;
+    var folders = this.file.substring(start + '/'.length, this.file.length - ".ngdoc".length);
+    var toc = folders.split('/');
+    toc.pop(); // remove file from list to leave only folders
+    this.subsection = toc || [];
+
     return this;
 
     function flush() {
