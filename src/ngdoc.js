@@ -75,7 +75,7 @@ Doc.prototype = {
   keywords: function keywords() {
     var keywords = {};
     var words = [];
-    Doc.METADATA_IGNORE.forEach(function (ignore) {
+    Doc.METADATA_IGNORE.concat(this.options.ignore_words).forEach(function (ignore) {
       keywords[ignore] = true;
     });
 

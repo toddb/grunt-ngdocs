@@ -29,7 +29,9 @@ module.exports = function(grunt) {
             (grunt.config('pkg').title || grunt.config('pkg').name) :
             '',
           html5Mode: true,
-          animation: false
+          animation: false,
+          ignoreFile: '',
+          ignore_words: []
         }),
         section = this.target === 'all' ? 'api' : this.target,
         setup;
@@ -61,6 +63,10 @@ module.exports = function(grunt) {
       }
     });
 
+    options.ignore_words = options.ignore_words.concat((function (file) {
+      var words = require('fs').readFileSync(file, 'utf8');
+      return words.toString().split(/[,\s\n\r]+/gm);
+    })(options.ignoreFile));
     if (options.image) {
       if (!/^((https?:)?\/\/|\.\.\/)/.test(options.image)) {
         grunt.file.copy(options.image, path.join(options.dest, 'img', options.image));

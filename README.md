@@ -158,6 +158,14 @@ Add showdown extensions to the converter that already exists in the showdown ext
 [default] ''
 Include/exclude condition based on tags on pages - similar to usage in docbook. Tags can be comma-delimited for multiple.
 
+####ignoreFile
+[default] ''
+Include project specific ignore file with comma or space delimited words.
+
+####ignore_words
+[default] []
+Include an array of ignore words - merged with ignore file.
+
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.
 
