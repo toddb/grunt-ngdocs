@@ -371,7 +371,7 @@ Doc.prototype = {
     *   - doesn't include the file
     */
     var start = this.file.indexOf(this.section) + this.section.length;
-    var folders = this.file.substring(this.options.subsectionsPath.length);
+    var folders = this.file.substring(this.options.subsectionsPath.length + '/'.length);
 
     var toc = folders.split('/');
     toc.shift(); // remove the section from the list at the start
