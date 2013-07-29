@@ -170,6 +170,10 @@ Include an array of ignore words - merged with ignore file.
 [default] 'templates/index.tmpl'
 Be able to copy and override the default template included in grunt-ngdocs
 
+####subsectionsPath
+[default] 'docs/content'
+The base path of the content to be able to easily scape the subsections
+
 
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.
