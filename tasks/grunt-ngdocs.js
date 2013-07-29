@@ -30,7 +30,8 @@ module.exports = function(grunt) {
           html5Mode: true,
           animation: false,
           ignoreFile: '',
-          ignore_words: []
+          ignore_words: [],
+          indexTemplate: path.resolve(templates, 'index.tmpl')
         }),
         section = this.target === 'all' ? 'api' : this.target,
         setup;
@@ -149,7 +150,7 @@ module.exports = function(grunt) {
         };
 
     // create index.html
-    content = grunt.file.read(path.resolve(templates, 'index.tmpl'));
+    content = grunt.file.read(options.indexTemplate);
     content = grunt.template.process(content, {data:data});
     grunt.file.write(path.resolve(options.dest, 'index.html'), content);
 

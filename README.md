@@ -137,6 +137,11 @@ Include project specific ignore file with comma or space delimited words.
 [default] []
 Include an array of ignore words - merged with ignore file.
 
+####indexTemplate
+[default] 'templates/index.tmpl'
+Be able to copy and override the default template included in grunt-ngdocs
+
+
 ##How it works
 The task parses the specified files for doc commets and extract these in partial html files for the documentation app.
 
