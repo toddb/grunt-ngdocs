@@ -886,6 +886,7 @@ function metadata(docs) {
 
     pages.push({
       section: doc.section,
+      subsection: doc.subsection,
       id: doc.id,
       name: title(doc.name),
       shortName: shortName,
