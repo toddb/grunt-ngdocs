@@ -31,7 +31,8 @@ module.exports = function(grunt) {
           animation: false,
           ignoreFile: '',
           ignore_words: [],
-          indexTemplate: path.resolve(templates, 'index.tmpl')
+          indexTemplate: path.resolve(templates, 'index.tmpl'),
+          subsectionsPath: 'docs/content'
         }),
         section = this.target === 'all' ? 'api' : this.target,
         setup;

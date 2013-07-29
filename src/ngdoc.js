@@ -262,11 +262,13 @@ Doc.prototype = {
     *  Extract the subsections from the file path
     *
     *   - subsections start from the section
-    *   - doesn't include the file and assumes file ends in .ngdoc
+    *   - doesn't include the file
     */
     var start = this.file.indexOf(this.section) + this.section.length;
-    var folders = this.file.substring(start + '/'.length, this.file.length - ".ngdoc".length);
+    var folders = this.file.substring(this.options.subsectionsPath.length);
+
     var toc = folders.split('/');
+    toc.shift(); // remove the section from the list at the start
     toc.pop(); // remove file from list to leave only folders
     this.subsection = toc || [];
 
