@@ -307,7 +307,9 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
   };
 
   $scope.submitForm = function() {
-    $scope.bestMatch && $location.path($scope.bestMatch.page.url);
+      $scope.bestMatch && $location.path(($scope.bestMatch.page.url.charAt(0) == '#') ?
+          $scope.bestMatch.page.url.substring(1) :
+          $scope.bestMatch.page.url);
   };
 
   $scope.afterPartialLoaded = function() {
