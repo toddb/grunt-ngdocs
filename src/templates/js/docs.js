@@ -426,6 +426,15 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
     $location.path(NG_DOCS.startPage).replace();
   }
 
+/*  // bind escape to hash reset callback
+  angular.element(window).bind('keydown', function(e) {
+    if (e.keyCode === 27) {
+      $scope.$apply(function() {
+        $scope.subpage = false;
+      });
+    }
+  });
+*/
   /**********************************
    Private methods
    ***********************************/
