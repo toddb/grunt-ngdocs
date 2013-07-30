@@ -312,10 +312,16 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
   };
 
   $scope.submitForm = function() {
+    /*
     if ($scope.bestMatch) {
       var url =  $scope.bestMatch.page.url;
       $location.path(NG_DOCS.html5Mode ? url : url.substring(1));
     }
+    */
+    $scope.bestMatch && $location.path($scope.bestMatch.page.url);
+      $scope.bestMatch && $location.path(($scope.bestMatch.page.url.charAt(0) == '#') ?
+          $scope.bestMatch.page.url.substring(1) :
+          $scope.bestMatch.page.url);
   };
 
   $scope.afterPartialLoaded = function() {
