@@ -17,7 +17,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "showdown": "https://github.com/toddb/showdown/archive/v0.3.2.tar.gz"
+    "showdown": "https://github.com/toddb/showdown/archive/v0.3.3.tar.gz"
   },
   "peerDependencies": {
     "grunt": "0.4.x"
