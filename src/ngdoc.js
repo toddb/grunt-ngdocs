@@ -285,11 +285,14 @@ Doc.prototype = {
     });
     text = parts.join('');
 
-    // configure up Showdown
-    var opts = { condition: this.options.condition}
-    var extensions = this.options.extensions ? ['table'].concat(this.options.extensions) : ['table']
-    text = new Showdown.converter({ extensions: extensions , options: opts})
-      .makeHtml(text);
+    // Add in extensions and tagging conditions to the generation of the markdown text - for this reason
+    // we have not migrated to `marked` library
+    text = new Showdown.converter(
+        { extensions: this.options.extensions,
+          options: {
+            condition: this.options.condition
+          }
+        }).makeHtml(text);
     text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function (_, id) {
       return placeholderMap[id];
     });
