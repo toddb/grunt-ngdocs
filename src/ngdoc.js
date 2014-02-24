@@ -11,11 +11,6 @@ var globalID = 0;
 var fs = require('fs');
 var fspath = require('path');
 var errorsJson;
-var marked = require('marked');
-marked.setOptions({
-  gfm: true,
-  tables: true
-});
 
 var lookupMinerrMsg = function (doc) {
   var code, namespace;
@@ -63,6 +58,7 @@ function Doc(text, file, line, options) {
   this.methods = this.methods || [];
   this.events = this.events || [];
   this.links = this.links || [];
+  this.subsection = this.subsection || [];
   this.anchors = this.anchors || [];
 }
 Doc.METADATA_IGNORE = (function() {
@@ -288,8 +284,11 @@ Doc.prototype = {
         });
     });
     text = parts.join('');
+
+    // configure up Showdown
     var opts = { condition: this.options.condition}
-    text = new Showdown.converter({ extensions: ['table'].concat(this.options.extensions) , options: opts})
+    var extensions = this.options.extensions ? ['table'].concat(this.options.extensions) : ['table']
+    text = new Showdown.converter({ extensions: extensions , options: opts})
       .makeHtml(text);
     text = text.replace(/(?:<p>)?(REPLACEME\d+)(?:<\/p>)?/g, function (_, id) {
       return placeholderMap[id];
@@ -370,8 +369,10 @@ Doc.prototype = {
     *   - subsections start from the section
     *   - doesn't include the file
     */
-    var start = this.file.indexOf(this.section) + this.section.length;
-    var folders = this.file.substring(this.options.subsectionsPath.length + '/'.length);
+    //var start = this.file.indexOf(this.section) + this.section.length;
+    var f = this.file || "";
+    var ssP = this.options.subsectionsPath || "";
+    var folders = f.substring(ssP.length + '/'.length);
 
     var toc = folders.split('/');
     toc.shift(); // remove the section from the list at the start
