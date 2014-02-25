@@ -257,6 +257,16 @@ docsApp.serviceFactory.sections = function serviceFactory() {
         }
       }
       return null;
+    },
+    /* this allow us to do href replacements when we have multiple sections which is not part of the standard library */
+    getPagesNotFromSection: function(sectionId) {
+      var pages = [];
+      for (var section in sections){
+        if (section != sectionId && typeof sections[section] != 'function' ) {
+          pages = pages.concat(sections[section])
+        }
+      }
+      return pages;
     }
   };
 
@@ -349,6 +359,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
     if (!sectionName) { return; }
 
     $scope.currentPage = page = sections.getPage(sectionId, partialId);
+    $scope.otherPages = sections.getPagesNotFromSection(sectionId);
 
     if (!$scope.currentPage) {
       $scope.partialTitle = 'Error: Page Not Found!';
