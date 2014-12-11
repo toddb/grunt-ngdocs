@@ -6,12 +6,14 @@ exports.docs = [];
 exports.process = process;
 
 var ngdoc = require('./ngdoc.js'),
-  NEW_LINE = /\n\r?/;
+    NEW_LINE = /\n\r?/;
 
 function process(content, file, section, options) {
-  if (exclude(content, file, options)) return;
+  if (options && options.condition) {
+    if (exclude(content, file, options)) return;
+  }
   if (/\.js$/.test(file)) {
-    processJsFile(content, file, section, options).forEach(function(doc) {
+    processJsFile(content, file, section, options).forEach(function (doc) {
       exports.docs.push(doc);
     });
   } else if (file.match(/\.ngdoc$/)) {
@@ -20,21 +22,38 @@ function process(content, file, section, options) {
   }
 }
 
-// exclude entire pages which have the @tag xxxx when yyyy is specified in the options
-function exclude(content, file, options) {
-  var match
-    , lines = content.toString().split(NEW_LINE)
-    , exclude = false;
+var isTagged = function (tag, condition) {
 
-  lines.forEach(function (line) {
-    if (match = line.match(/^@tag\s+(.*)/)) {
-      var tag = match[1]; // single tag match at this point
-      if (options.condition && options.condition.indexOf(tag) == -1) {
-        console.log("Excluding: ", file, "- @tag", match[1]);
-        exclude = true;
-      }
+  var hasTag = false
+  var tags = tag.split('|')
+  for (var i = 0; i < tags.length; ++i) {
+    if (tags[i] == condition) {
+      hasTag = true;
+      continue
     }
+  }
+  return hasTag
+}
+
+// exclude entire pages which have the @tag xxxx when yyyy is specified in the options
+// able to deal with multiple tags delimited by a bar '|'
+function exclude(content, file, options) {
+  var exclude = false;
+
+  var headers = content
+      .toString()
+      .split(NEW_LINE)
+      .slice(0, 5);  // assume the @tag is within the first five lines
+
+  headers.forEach(function (line) {
+    var match = line.match(/^@tag\s+(.*)/);
+
+    if (match != null) {
+      exclude = !isTagged(match[1], options.condition);
+    }
+
   });
+
   return exclude;
 }
 

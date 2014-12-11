@@ -1,3 +1,12 @@
+# 0.1.11 (2014-12-12)
+
+## Enhancement
+###
+
+* page tagging works with multiple tags bar '|' delimited
+
+
+
 # 0.1.11 (2014-01-10)
 
 ## Bug fixes
