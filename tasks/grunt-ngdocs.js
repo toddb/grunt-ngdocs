@@ -96,6 +96,17 @@ module.exports = function(grunt) {
       setup.apis[section] = f.api || section == 'api';
       f.src.filter(exists).forEach(function(filepath) {
         var content = grunt.file.read(filepath);
+
+        /* Table of Contents transformation */
+        if (_.isObject(f.tocrename)) {
+          for (var s in f.tocrename){
+            if (filepath.indexOf(s) != -1){
+              filepath = filepath.replace(s, f.tocrename[s])
+              grunt.log.writeln("TOC rename: " + filepath);
+            }
+          }
+        }
+
         reader.process(content, filepath, section, options);
       });
     });

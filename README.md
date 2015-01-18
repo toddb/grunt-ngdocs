@@ -54,6 +54,7 @@ ngdocs: {
   tutorial: {
     src: ['content/tutorial/*.ngdoc'],
     title: 'Tutorial'
+    tocrename: { 'original/src': 'toc/location' }
   },
   api: {
     src: ['src/**/*.js', '!src/**/*.spec.js'],
@@ -174,6 +175,9 @@ Be able to copy and override the default template included in grunt-ngdocs
 [default] 'docs/content'
 The base path of the content to be able to easily scape the subsections
 
+####tocrename
+[default] ''
+Rename pages in the toc. It matches (on key) and does a string replacement (on value).
 
 ##How it works
 The task parses the specified files for doc comments and extracts them into partial html files for the documentation app.

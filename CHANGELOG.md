@@ -1,4 +1,11 @@
-# 0.1.11 (2014-12-12)
+# 0.1.13 (2015-01-19)
+
+## Enhancement
+###
+
+* can now transform a TOC page based on match with file/folder structure
+
+# 0.1.12 (2014-12-12)
 
 ## Enhancement
 ###
